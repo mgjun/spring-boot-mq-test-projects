@@ -11,7 +11,7 @@
     <groupId>com.mj.demo</groupId>
     <artifactId>rabitmq-producer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>rabbitmq-producer</name>
+    <name>rabbitmq-demo01</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

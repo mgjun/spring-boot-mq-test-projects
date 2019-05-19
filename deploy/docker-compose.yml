@@ -1,0 +1,42 @@
+version: "2.0"
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  activemq:
+    image: webcenter/activemq:latest
+    networks:
+      - "backing-services"
+    environment:
+      ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT: "true"
+      ACTIVEMQ_ADMIN_LOGIN: admin
+      ACTIVEMQ_ADMIN_PASSWORD: admin
+      ACTIVEMQ_WRITE_LOGIN: admin
+      ACTIVEMQ_WRITE_PASSWORD: admin
+      ACTIVEMQ_READ_LOGIN: admin
+      ACTIVEMQ_READ_PASSWORD: admin
+      ACTIVEMQ_JMX_LOGIN: admin
+      ACTIVEMQ_JMX_PASSWORD: admin
+      ACTIVEMQ_ENABLED_SCHEDULER: "true"
+      ACTIVEMQ_MIN_MEMORY: 512
+      ACTIVEMQ_MAX_MEMORY: 2048
+    ports:
+      # mqtt
+      - "1883:1883"
+#      # amqp
+#      - "5672:5672"
+      # ui
+      - "8161:8161"
+      # stomp
+      - "61613:61613"
+      # ws
+      - "61614:61614"
+      # jms
+      - "61616:61616"
+
+networks:
+  backing-services:
+    driver: bridge
